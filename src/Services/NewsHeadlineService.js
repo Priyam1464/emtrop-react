@@ -1,6 +1,6 @@
 export default async function newsHeadlineService(country) {
     try {
-        const baseUrl = "https://gnews.io/api/v4/top-headlines?token=304aa793b6c80154472b3db4fd6b6265&country=";
+        const baseUrl = "https://gnews.io/api/v4/top-headlines?token=6df4a91ddccf4f4fcbd8812fa447d560&country=";
         const endpointUrl = baseUrl + country
         const headlines = await fetch(endpointUrl).then(response => response.json())
         return headlines.articles
