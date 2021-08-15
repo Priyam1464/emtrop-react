@@ -1,4 +1,4 @@
-import React,{useRef,useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
 }));
 
@@ -67,6 +67,9 @@ export default function Headline({headline,id}) {
         <Typography variant="body2" color="textSecondary" component="p">
           {headline.description}
         </Typography>
+        <a rel="noreferrer" target="_blank" href={headline.url}>
+         {headline.url}
+        </a>
       </CardContent>
       <CardActions disableSpacing>
     <IconButton color={storedValue.color} onClick={likeAction} aria-label="add to favorites">

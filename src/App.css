@@ -4,7 +4,6 @@
 {
   display: flex;
   justify-content: center;
-  margin-top: 10vh;
 }
 
 
@@ -13,4 +12,5 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 5vh;
+  margin-bottom:5vh ;
 }
