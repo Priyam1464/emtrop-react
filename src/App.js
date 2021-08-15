@@ -15,7 +15,7 @@ function App() {
           render={(history) => (
             <AppBar>
               <Tabs
-            
+              variant="fullWidth"
               value={ history.location.pathname}>
                 <Tab
                   value={routes[0]}

@@ -14,6 +14,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    marginTop:'2vh'
   },
   media: {
     height: 0,

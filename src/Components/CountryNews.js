@@ -3,6 +3,8 @@ import newsHeadlineService from "../Services/NewsHeadlineService";
 import Pagination from './Pagination'
 import Headline from "./Headline";
 import SearchItem from "./SearchBar"
+import { CircularProgress } from '@material-ui/core';
+
 
 export default function CountryNews({country})
 {
@@ -55,7 +57,7 @@ export default function CountryNews({country})
           
          (headlines!==null&&headlines.length>0)? 
           getHeadlines(searchItem)
-         .map((headline,index)=><Headline id={country+"-"+pageNumber+"-"+index} key={country+"-"+pageNumber+"-"+index} headline={headline}/>):<div>Loading</div>
+         .map((headline,index)=><Headline id={country+"-"+pageNumber+"-"+index} key={country+"-"+pageNumber+"-"+index} headline={headline}/>):<CircularProgress />
       }
       </div>
     </>

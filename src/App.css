@@ -7,10 +7,55 @@
 }
 
 
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .countryHeadlines
+    {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-top: 5vh;
+      margin-bottom:5vh ;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+
 .countryHeadlines
 {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   margin-top: 5vh;
   margin-bottom:5vh ;
+}
+}
+
+@media only screen and (max-device-width: 480px) {
+  .countryHeadlines
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:2vh ;
+  }
+}
+@media only screen and (min-width:540px) and (max-device-width: 1025px)  {
+  .countryHeadlines
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 5vh;
+    margin-bottom:5vh ;
+    flex-wrap: wrap;
+  }
 }
