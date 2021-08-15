@@ -68,7 +68,7 @@ export default function CountryNews({country}) {
             <div class="countryHeadlines">
                 {
 
-                (headlines !== null && headlines.length > 0) ? getHeadlines(searchItem).map((headline, index) =>< Headline id = {
+                (headlines !== null && headlines !== undefined && headlines.length > 0) ? getHeadlines(searchItem).map((headline, index) =>< Headline id = {
                     country + "-" + pageNumber + "-" + index
                 }
                 key = {
@@ -76,7 +76,7 @@ export default function CountryNews({country}) {
                 }
                 headline = {
                     headline
-                } />) : headlines.length === 0 ? "No Headlines Found" : <CircularProgress/>
+                } />) : (headlines !== null && headlines !== undefined && headlines.length === 0) ? "No Headlines Found" : <CircularProgress/>
             } </div>
         </>
     )
