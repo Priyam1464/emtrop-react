@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef,useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -8,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import useLocalStorage from '../CustomHooks/localStorage';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,20 +35,33 @@ const getFormattedDate=(dateTime)=>{
   return (date+" "+month+" "+year)
 }
 
-export default function Headline({headline}) {
+export default function Headline({headline,id}) {
   const classes = useStyles();
+  const [storedValue,setStoredValue]=useLocalStorage(id,{color:"default",show:"true"})
 
+  const likeAction=()=>{
+      console.log(storedValue)
+      if(storedValue.color==="default")
+    setStoredValue({...storedValue,color:"primary"})
+     else
+     setStoredValue({...storedValue,color:"default"})
+  }
+
+  const hideHeadline=()=>{
+     if(storedValue.show==="true")
+     setStoredValue({...storedValue,show:"false"})
+  }
 
   return (
-    <Card className={classes.root}>
-      <CardHeader
+      <>
+  { storedValue.show==="true" && <Card className={classes.root}>
+     <CardHeader
         title={headline.title}
         subheader={getFormattedDate(new Date(headline.publishedAt))}
       />
       <CardMedia
         className={classes.media}
         image={headline.image}
-        title="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -54,10 +69,14 @@ export default function Headline({headline}) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+    <IconButton color={storedValue.color} onClick={likeAction} aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+         <IconButton  onClick={hideHeadline}>
+        <VisibilityIcon/>
+        </IconButton> 
       </CardActions>
-    </Card>
+    </Card>}
+    </>
   );
 }

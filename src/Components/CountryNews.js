@@ -16,6 +16,7 @@ export default function CountryNews({country})
     useEffect(()=>{
       (async ()=>{
         const headlines=await newsHeadlineService(country)
+         console.log(headlines)
         maxPages.current=Math.floor(headlines.length/3)+Math.floor(headlines.length%3)
         setHeadlines(headlines)
         
@@ -43,7 +44,7 @@ export default function CountryNews({country})
       {
       
          (headlines!==null&&headlines.length>0)? headlines.slice(3*(pageNumber-1),((3*pageNumber)<headlines.length)?3*pageNumber:headlines.length)
-         .map((headline,index)=><Headline  key={country+"-"+pageNumber+"-"+index} headline={headline}/>):<div>Loading</div>
+         .map((headline,index)=><Headline id={country+"-"+pageNumber+"-"+index} key={country+"-"+pageNumber+"-"+index} headline={headline}/>):<div>Loading</div>
       }
       </div>
     </>
