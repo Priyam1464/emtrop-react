@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React,{useRef,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +10,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Pagination({onPrevClick,onNextClick,pageNumber}) {
+export default function Pagination({onPrevClick,onNextClick,pageNumber,maxPages}) {
   const classes = useStyles();
+  const prevRef=useRef()
+  const nextRef=useRef()
+
+  useEffect(()=>{
+   
+    if(pageNumber===1)
+    {
+        console.log(prevRef)
+        prevRef.current["ariaDisabled"]=true
+    }
+
+     if(pageNumber===maxPages)
+     {
+        nextRef.current.color="grey"
+        nextRef.current.textDecoration="none"
+     }
+  },[])
 
   const previousClick=(event)=>{
     event.preventDefault()
@@ -23,15 +40,18 @@ export default function Pagination({onPrevClick,onNextClick,pageNumber}) {
 
   const nextClick=(event)=>{
     event.preventDefault()
-    onNextClick()
+    if(pageNumber!==maxPages)
+    {
+     onNextClick()
+    }
   }
 
   return (
     <Typography >
-      <Link href="#"  onClick={previousClick}>
+      <Link disabled ref={prevRef} href="#"  onClick={previousClick}>
         Previous
       </Link>
-      <Link href="#" className={classes.next}  onClick={nextClick} >
+      <Link ref={nextRef} href="#" className={classes.next}  onClick={nextClick} >
         Next
       </Link>
     </Typography>
