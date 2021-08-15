@@ -18,8 +18,10 @@ export default function CountryNews({country}) {
         (async () => {
             const headlines = await newsHeadlineService(country)
             console.log(headlines)
-            maxPages.current = Math.floor(headlines.length / 3) + Math.floor(headlines.length % 3)
-            setHeadlines(headlines)
+            if (headlines !== undefined && headlines !== null) {
+                maxPages.current = Math.floor(headlines.length / 3) + Math.floor(headlines.length % 3)
+                setHeadlines(headlines)
+            }
 
         })()
 
@@ -65,7 +67,7 @@ export default function CountryNews({country}) {
 
             <div class="countryHeadlines">
                 {
-
+              
                 (headlines !== null && headlines.length > 0) ? getHeadlines(searchItem).map((headline, index) =>< Headline id = {
                     country + "-" + pageNumber + "-" + index
                 }
